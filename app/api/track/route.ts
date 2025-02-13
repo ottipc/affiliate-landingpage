@@ -5,7 +5,7 @@ const GA_TRACKING_ID = "G-8QPPR4B37X";
 export async function GET() {
   return NextResponse.json({ success: false, message: "Use POST method." }, { status: 405 });
 }
-
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export async function POST(req: Request) {
   const body = `v=1&t=event&tid=${GA_TRACKING_ID}&cid=555&ec=proxy&ea=test_event&el=test_label&ev=1`;
 
