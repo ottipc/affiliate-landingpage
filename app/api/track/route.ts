@@ -5,19 +5,36 @@ const GA_TRACKING_ID = "G-8QPPR4B37X";
 export async function GET() {
   return NextResponse.json({ success: false, message: "Use POST method." }, { status: 405 });
 }
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
+
 export async function POST(req: Request) {
-  const body = `v=1&t=event&tid=${GA_TRACKING_ID}&cid=555&ec=proxy&ea=test_event&el=test_label&ev=1`;
+  try {
+    const eventData = await req.json();
+    console.log("🔥 Eingehendes Tracking-Event:", eventData);
 
-  const response = await fetch("https://www.google-analytics.com/collect", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body,
-  });
+    const body = new URLSearchParams({
+      v: "1",
+      t: "event",
+      tid: GA_TRACKING_ID,
+      cid: "555",
+      ec: eventData.category || "proxy",
+      ea: eventData.event || "test_event",
+      el: eventData.label || "test_label",
+      ev: eventData.value?.toString() || "1",
+    });
 
-  return response.ok
-      ? NextResponse.json({ success: true })
-      : NextResponse.json({ success: false }, { status: 500 });
+    const response = await fetch("https://www.google-analytics.com/collect", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: body.toString(),
+    });
+
+    return response.ok
+        ? NextResponse.json({ success: true })
+        : NextResponse.json({ success: false }, { status: 500 });
+  } catch (error) {
+    console.error("🔥 Fehler beim Verarbeiten des Tracking-Events:", error);
+    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+  }
 }
