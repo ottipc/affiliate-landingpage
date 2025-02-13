@@ -35,6 +35,11 @@ export async function POST(req: Request) {
         : NextResponse.json({ success: false }, { status: 500 });
   } catch (error) {
     console.error("🔥 Fehler beim Verarbeiten des Tracking-Events:", error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+
+    // 💥 Hier kommt der Fix: Expliziter Cast zu `Error`
+    const errMessage = error instanceof Error ? error.message : "Unbekannter Fehler";
+
+    return NextResponse.json({ success: false, error: errMessage }, { status: 500 });
   }
 }
+
