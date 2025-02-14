@@ -7,10 +7,10 @@ import "./globals.css";
 export default function Home() {
   const aiTools = [
     {
-      name: "Jasper AI",
-      description: "Erstelle hochwertige Texte mit KI-Unterstützung.",
-      link: "https://saasaffiliate.com/partner/jasper-ai-affiliate-program/?utm_source=chatgpt.com",
-      image: "/images/jasper.svg",
+      name: "GetResponse",
+      description: "Das leistungsstärkste E-Mail-Marketing-Tool für dein Business.",
+      link: "https://www.getresponse.com?ab=jWmGpmhpHx", // RICHTIGER AFFILIATE-LINK
+      image: "/images/getresponse.png",
     },
     {
       name: "Copy.ai",
@@ -25,10 +25,10 @@ export default function Home() {
       image: "/images/writesonic.svg",
     },
     {
-      name: "Copysmith",
-      description: "Skaliere deine Content-Erstellung mit KI-Technologie.",
-      link: "https://www.copysmith.ai/affiliate",
-      image: "/images/copysmith.png",
+      name: "Tubemagic",
+      description: "Growing on YouTube Made Easy!",
+      link: "https://tubemagic.com/ds#aff=otti50",
+      image: "/images/tubemagic.webp",
     },
     {
       name: "CustomGPT.ai",
@@ -53,7 +53,7 @@ export default function Home() {
             transition={{ duration: 0.8 }}
             className="text-center w-full max-w-4xl mb-12"
         >
-          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 drop-shadow-lg">
+          <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 drop-shadow-xl">
             🚀 Die besten AI-Tools & exklusiven Deals für 2025 🔥
           </h1>
           <p className="text-gray-300 mt-4 text-lg font-light">
@@ -62,7 +62,7 @@ export default function Home() {
         </motion.header>
 
         {/* AI Tool Cards */}
-        <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+        <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
           {aiTools.map((tool, index) => (
               <motion.div
                   key={index}
@@ -70,13 +70,14 @@ export default function Home() {
                   transition={{ duration: 0.3 }}
                   className="bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col items-center transition-transform border border-gray-700 hover:shadow-2xl"
               >
-                <div className="relative w-64 h-40 bg-white rounded-lg overflow-hidden flex items-center justify-center">
-                  {/* Logos mit weißem Hintergrund und 'object-contain' */}
+                {/* Einheitlicher Bild-Container mit 8:5-Seitenverhältnis */}
+                <div className="relative w-full aspect-[8/5] bg-white rounded-lg overflow-hidden">
                   <Image
                       src={tool.image}
                       alt={tool.name}
                       fill
-                      className="object-contain p-2"
+                      className="object-contain p-4"
+                      loading="lazy"
                   />
                 </div>
                 <h2 className="text-2xl font-bold mt-4 text-yellow-300">{tool.name}</h2>
@@ -92,9 +93,6 @@ export default function Home() {
               </motion.div>
           ))}
         </div>
-
-        {/* Footer mit Impressum */}
-
       </div>
   );
 }
