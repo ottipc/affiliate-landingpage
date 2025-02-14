@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import ImpressumModal from "../components/ImpressumModal";
 import { motion } from "framer-motion";
 import "./globals.css";
 
