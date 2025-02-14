@@ -15,7 +15,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <html lang="de">
         <head>
             {/* Google Tag Manager Script */}
-            <Script src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X" strategy="afterInteractive" />
+            <Script
+                src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X"
+                strategy="afterInteractive"
+            />
             <Script id="ga-init" strategy="afterInteractive">
                 {`
             window.dataLayer = window.dataLayer || [];
@@ -29,14 +32,24 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Google Analytics Client-Skript */}
         <GAClient />
 
-        <main className="flex-grow">{children}</main>
+        {/* Sticky Navigation (fixed auf allen Seiten) */}
+        <div className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md text-white py-3 px-6 flex justify-between items-center z-50">
+            <span className="text-lg font-bold">🔥 AI Affiliate Deals</span>
+            <a
+                href="#"
+                className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition"
+            >
+                🔝 Top Deals
+            </a>
+        </div>
 
-        {/* ImpressumModal an Root-Level, um zentrale Position zu garantieren */}
-        <ImpressumModal />
+        {/* Extra top padding to account for the sticky nav */}
+        <main className="flex-grow pt-16">{children}</main>
 
-        {/* Footer ohne Impressum */}
+        {/* Footer */}
         <footer className="bg-gray-800 p-6 text-center flex flex-col items-center">
             <div className="text-gray-400 text-lg flex gap-4">
+                <ImpressumModal />
                 <a href="/datenschutz" className="text-yellow-400 hover:text-yellow-500">
                     Datenschutz
                 </a>
