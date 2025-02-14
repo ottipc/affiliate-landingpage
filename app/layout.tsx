@@ -14,6 +14,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     return (
         <html lang="de">
         <head>
+            <title>Best AI Tools & Exclusive Deals - 2025</title>
+            <meta name="description" content="Discover the best AI tools for automation, business growth, and passive income. Get exclusive deals on AI-powered software now!" />
+            <meta name="keywords" content="AI tools, AI software, automation tools, best AI deals, passive income AI, make money online AI" />
+            <meta name="author" content="AI Affiliate Deals" />
+            <meta property="og:title" content="🔥 Best AI Tools & Exclusive Deals - 2025" />
+            <meta property="og:description" content="Maximize your business with the top AI automation tools! Find the best deals here." />
+            <meta property="og:image" content="/images/ai-deals-banner.png" />
+            <meta property="og:url" content="https://www.ai-affiliate-deals.com" />
+            <meta name="robots" content="index, follow" />
             {/* Google Tag Manager Script */}
             <Script
                 src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X"
