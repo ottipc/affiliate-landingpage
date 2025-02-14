@@ -1,5 +1,7 @@
 import Script from "next/script";
-import GAClient from "@/components/GAClient"; // Import der Client-Komponente
+import GAClient from "@/components/GAClient";
+import ImpressumModal from "@/components/ImpressumModal";
+
 export const metadata = {
     title: "AI Affiliate Deals",
     description: "Die besten AI-Affiliate-Deals",
@@ -7,6 +9,7 @@ export const metadata = {
         "impact-site-verification": "636cee94-4eae-4934-a6dd-aaa3db039ecd",
     },
 };
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="de">
@@ -22,10 +25,26 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
             </Script>
         </head>
-        <body>
-        {/* Client Component für sicheres GA-Tracking */}
+        <body className="bg-gray-900 text-white flex flex-col min-h-screen">
+        {/* Google Analytics Client-Skript */}
         <GAClient />
-        {children}
+
+        <main className="flex-grow">{children}</main>
+
+        {/* ImpressumModal an Root-Level, um zentrale Position zu garantieren */}
+        <ImpressumModal />
+
+        {/* Footer ohne Impressum */}
+        <footer className="bg-gray-800 p-6 text-center flex flex-col items-center">
+            <div className="text-gray-400 text-lg flex gap-4">
+                <a href="/datenschutz" className="text-yellow-400 hover:text-yellow-500">
+                    Datenschutz
+                </a>
+            </div>
+            <p className="text-gray-500 mt-2 text-sm">
+                © {new Date().getFullYear()} AI-Affiliate-Deals. Alle Rechte vorbehalten.
+            </p>
+        </footer>
         </body>
         </html>
     );
