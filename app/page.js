@@ -3,6 +3,7 @@
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import CTAButton from "@/components/CTAButton"; // Unser frecher Button
 import "./globals.css";
 
 export default function Home() {
@@ -106,7 +107,7 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                     className="bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col items-center transition-transform border border-gray-700 hover:shadow-2xl"
                 >
-                  {/* Uniform image container with an 8:5 aspect ratio */}
+                  {/* Einheitlicher Bild-Container (8:5) */}
                   <div className="relative w-full aspect-[8/5] bg-white rounded-lg overflow-hidden">
                     <Image
                         src={tool.image}
@@ -120,14 +121,8 @@ export default function Home() {
                     {tool.name}
                   </h2>
                   <p className="text-gray-400 mt-2 text-center">{tool.description}</p>
-                  <a
-                      href={tool.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-4 bg-yellow-500 text-gray-900 px-6 py-3 rounded-xl hover:shadow-lg hover:bg-yellow-600 font-bold transition w-full text-center text-lg flex items-center justify-center"
-                  >
-                    🔥 Get Best Deal Now 👉
-                  </a>
+                  {/* CTAButton wird hier eingebaut */}
+                  <CTAButton href={tool.link} toolName={tool.name} />
                 </motion.div>
             ))}
           </div>
@@ -168,7 +163,7 @@ export default function Home() {
           </div>
 
           {/* Google AdSense Placeholder */}
-          <div className="mt-12 w-full max-w-4xl">
+          <div className="mt-12 w-full max-w-7xl">
             <ins
                 className="adsbygoogle"
                 style={{ display: "block" }}
