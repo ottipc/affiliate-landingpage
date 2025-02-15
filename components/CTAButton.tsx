@@ -7,27 +7,22 @@ interface CTAButtonProps {
 
 export default function CTAButton({ href, toolName }: CTAButtonProps) {
     const handleClick = async (event: React.MouseEvent<HTMLAnchorElement>) => {
-        event.preventDefault(); // Blockiere das direkte Navigieren
+        event.preventDefault();
+        console.log("CTA Button clicked:", toolName);
+        //alert("Sending event...: " + toolName + " click");
 
         try {
-            // Sende das Event über deinen Proxy; das Event heißt z. B. "GetResponse click"
-            console.log("CTA Button clicked!");
             const response = await fetch("/api/track", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ event: `${toolName} click` }),
             });
-
-            if (response.ok) {
-                console.log("Event successfully sent via proxy!");
-            } else {
-                console.error("Proxy event sending failed!", await response.text());
-            }
+            const data = await response.json();
+            console.log("Proxy Response:", data);
         } catch (err) {
             console.error("Error sending event via proxy:", err);
         }
 
-        // Öffne den Link manuell in einem neuen Tab
         window.open(href, "_blank", "noopener,noreferrer");
     };
 
