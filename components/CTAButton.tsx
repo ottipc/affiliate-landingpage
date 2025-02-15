@@ -8,11 +8,10 @@ interface CTAButtonProps {
 export default function CTAButton({ href, toolName }: CTAButtonProps) {
     const handleClick = async (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault(); // Blockiere das direkte Navigieren
-        console.log("CTA Button clicked!");
-        alert("Sending event...: " + toolName + " click");
 
         try {
             // Sende das Event über deinen Proxy; das Event heißt z. B. "GetResponse click"
+            console.log("CTA Button clicked!");
             const response = await fetch("/api/track", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
