@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 // Lese die Werte aus der .env-Datei (nur auf der Server-Seite verfügbar)
 const GA4_MEASUREMENT_ID = process.env.GA4_MEASUREMENT_ID;
 const GA4_API_SECRET = process.env.GA4_API_SECRET;
+export const runtime = "nodejs";
 
 // Überprüfe, ob beide Variablen vorhanden sind
 if (!GA4_MEASUREMENT_ID || !GA4_API_SECRET) {
