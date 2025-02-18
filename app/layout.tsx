@@ -32,6 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <meta property="og:image" content="/images/ai-deals-banner.png" />
             <meta property="og:url" content="https://www.ai-affiliate-deals.com" />
             <meta name="robots" content="index, follow" />
+
+            {/* ADMITAD Affiliate Links */}
+            <meta name="verify-admitad" content="1dfda65125" />
             {/* Google Tag Manager / Analytics Script */}
             <Script
                 src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X"
