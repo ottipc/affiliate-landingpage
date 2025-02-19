@@ -32,7 +32,7 @@ export default function Home() {
     {
       name: "Tubemagic",
       description: "Growing on YouTube made easy!",
-      link: "https://tubemagic.com/ds#aff=otti50",
+      link: "https://tubemagic.com/ds#aff=ai-affiliate-deals",
       image: "/images/tubemagic.webp",
       id: "tubemagic",
     },
