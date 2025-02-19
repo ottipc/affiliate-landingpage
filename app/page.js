@@ -3,52 +3,65 @@
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import CTAButton from "@/components/CTAButton"; // Unser frecher Button
+import CTAButton from "@/components/CTAButton"; // Our cheeky CTA button
 import "./globals.css";
 
 export default function Home() {
+  // Your updated AI tool array with English descriptions
   const aiTools = [
     {
-      name: "GetResponse",
-      description: "The most powerful email marketing tool for your business.",
-      link: "https://www.getresponse.com?ab=jWmGpmhpHx",
-      image: "/images/getresponse.png",
-      id: "getresponse",
-    },
-    {
-      name: "Copy.ai",
-      description: "Automate your copywriting with state-of-the-art AI power.",
-      link: "https://www.copy.ai/affiliate",
-      image: "/images/copyai.svg",
-      id: "copyai",
-    },
-    {
-      name: "Writesonic",
-      description: "Turn ideas into content with the power of AI.",
-      link: "https://www.writesonic.com/affiliate",
-      image: "/images/writesonic.svg",
-      id: "writesonic",
-    },
-    {
-      name: "Tubemagic",
-      description: "Growing on YouTube made easy!",
-      link: "https://tubemagic.com/ds#aff=ai-affiliate-deals",
-      image: "/images/tubemagic.webp",
-      id: "tubemagic",
-    },
-    {
-      name: "CustomGPT.ai",
-      description: "Create custom-tailored ChatGPT models for your business.",
+      name: "CustomGPT",
+      description:
+          "Build custom GPT models tailored to your business. Train them with your own data and use them as chatbots, knowledge bases, or digital assistants.",
       link: "https://customgpt.ai/?fpr=otti54",
       image: "/images/customGPT.svg",
       id: "customgpt",
+      cookieDuration: "30 days",
     },
     {
-      name: "Bluehost",
-      description: "The best web hosting solution for your online business.",
-      link: "https://www.bluehost.com/track/youraffiliateid",
-      image: "/images/bluehost.png",
-      id: "bluehost",
+      name: "TubeMagic",
+      description:
+          "Grow your YouTube channel like crazy: more clicks, more subscribers, more fame!",
+      link: "https://tubemagic.com/ds#aff=ai-affiliate-deals",
+      image: "/images/tubemagic.webp",
+      id: "tubemagic",
+      cookieDuration: "30 days",
+    },
+    {
+      name: "GetResponse",
+      description:
+          "An all-in-one marketing platform offering email automation, landing pages, webinars, and more.",
+      link: "https://www.getresponse.com?ab=jWmGpmhpHx",
+      image: "/images/getresponse.png",
+      id: "getresponse",
+      cookieDuration: "30 days",
+    },
+    {
+      name: "Rytr",
+      description:
+          "AI writing assistant for catchy blog posts, ad copy, and social media content. Tired of staring at a blank page? Rytr has your back.",
+      link: "https://affiliates.rytr.me/",
+      image: "/images/rytr.png",
+      id: "rytr",
+      cookieDuration: "30 days",
+    },
+    {
+      name: "Fliki",
+      description:
+          "Turn text into engaging voiceovers and videos. Harness AI power for your multimedia magic.",
+      link: "https://fliki.ai?via=ottir",
+      image: "/images/fliki.png",
+      id: "fliki",
+      cookieDuration: "30 days",
+    },
+    {
+      name: "Synthesia",
+      description:
+          "Create realistic AI videos with avatars – perfect for explainers, product demos, or whenever you don’t want to show your own face.",
+      link: "https://www.synthesia.io/?via=ottir",
+      image: "/images/synthesia.png",
+      id: "synthesia",
+      cookieDuration: "30 days",
     },
   ];
 
@@ -99,7 +112,10 @@ export default function Home() {
           </motion.header>
 
           {/* AI Tool Cards */}
-          <div id="ai-deals" className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl">
+          <div
+              id="ai-deals"
+              className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl"
+          >
             {aiTools.map((tool, index) => (
                 <motion.div
                     key={index}
@@ -107,22 +123,32 @@ export default function Home() {
                     transition={{ duration: 0.3 }}
                     className="bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col items-center transition-transform border border-gray-700 hover:shadow-2xl"
                 >
-                  {/* Einheitlicher Bild-Container (8:5) */}
+                  {/* Image Container (8:5) */}
                   <div className="relative w-full aspect-[8/5] bg-white rounded-lg overflow-hidden">
-                    <Image
-                        src={tool.image}
-                        alt={tool.name}
-                        fill
-                        className="object-contain p-4"
-                        loading="lazy"
-                    />
+                    {["rytr", "tubemagic"].includes(tool.id) ? (
+                        <Image
+                            src={tool.image}
+                            alt={tool.name}
+                            fill
+                            className="object-cover"
+                            loading="lazy"
+                        />
+                    ) : (
+                        <Image
+                            src={tool.image}
+                            alt={tool.name}
+                            fill
+                            className="object-contain p-4"
+                            loading="lazy"
+                        />
+                    )}
                   </div>
                   <h2 className="text-2xl font-bold mt-4 text-yellow-300" id={tool.id}>
                     {tool.name}
                   </h2>
                   <p className="text-gray-400 mt-2 text-center">{tool.description}</p>
-                  {/* CTAButton wird hier eingebaut */}
                   <CTAButton href={tool.link} toolName={tool.name} />
+
                 </motion.div>
             ))}
           </div>
@@ -138,25 +164,21 @@ export default function Home() {
                   <a href="https://www.ai-affiliate-deals.com#getresponse" className="underline">
                     GetResponse
                   </a>{" "}
-                  for email automation and{" "}
-                  <a href="https://www.ai-affiliate-deals.com#copyai" className="underline">
-                    Copy.ai
-                  </a>{" "}
-                  for copywriting.
+                  for email automation and more.
                 </p>
               </div>
               <div>
                 <p className="font-bold">How can AI help my business?</p>
                 <p>
-                  AI can automate tasks like copywriting, email marketing, content creation, and even website
-                  building. It’s all about working smarter, not harder.
+                  AI can automate tasks like copywriting, email marketing, content creation, and
+                  even website building. It’s all about working smarter, not harder.
                 </p>
               </div>
               <div>
                 <p className="font-bold">Are these deals limited?</p>
                 <p>
-                  Yes, they’re exclusive, limited-time deals. Grab them before they vanish into thin air like your
-                  last paycheck.
+                  Yes, they’re exclusive, limited-time deals. Grab them before they vanish into
+                  thin air like your last bar tab.
                 </p>
               </div>
             </div>
