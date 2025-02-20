@@ -26,7 +26,7 @@ export default function Home() {
       name: "TubeMagic",
       description:
           "Grow your YouTube channel like crazy: more clicks, more subscribers, more fame!",
-      link: "https://tubemagic.com/ds#aff=ai-affiliate-deals",
+      link: "https://tubemagic.com/ds#aff=ai-affiliate-deals&cam=ai2web",
       image: "/images/tubemagic.webp",
       id: "tubemagic",
     },
@@ -42,7 +42,7 @@ export default function Home() {
       name: "Rytr",
       description:
           "AI writing assistant for catchy blog posts, ad copy, and social media content. Tired of staring at a blank page? Rytr has your back.",
-      link: "https://affiliates.rytr.me/",
+      link: "https://rytr.me/?via=ai-affiliate-deals",
       image: "/images/rytr.png",
       id: "rytr",
     },
@@ -50,7 +50,7 @@ export default function Home() {
       name: "Fliki",
       description:
           "Turn text into engaging voiceovers and videos. Harness AI power for your multimedia magic.",
-      link: "https://fliki.ai?via=ottir",
+      link: "https://fliki.ai/?via=ai-affiliate-deals",
       image: "/images/fliki.png",
       id: "fliki",
     },
@@ -58,7 +58,7 @@ export default function Home() {
       name: "Synthesia",
       description:
           "Create realistic AI videos with avatars – perfect for explainers, product demos, or whenever you don’t want to show your own face.",
-      link: "https://www.synthesia.io/?via=ottir",
+      link: "https://www.synthesia.io/?via=ai-affiliate-deals",
       image: "/images/synthesia.png",
       id: "synthesia",
     },
