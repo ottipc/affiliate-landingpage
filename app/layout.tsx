@@ -1,4 +1,5 @@
 import Script from "next/script";
+import Image from "next/image";
 import GAClient from "@/components/GAClient";
 import ImpressumModal from "@/components/ImpressumModal";
 
@@ -35,11 +36,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
             {/* ADMITAD Affiliate Links */}
             <meta name="verify-admitad" content="1dfda65125" />
+
             {/* Google Tag Manager / Analytics Script */}
-            <Script
-                src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X"
-                strategy="afterInteractive"
-            />
+            <Script src="https://www.googletagmanager.com/gtag/js?id=G-8QPPR4B37X" strategy="afterInteractive" />
             <Script id="ga-init" strategy="afterInteractive">
                 {`
             window.dataLayer = window.dataLayer || [];
@@ -49,19 +48,56 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
             </Script>
         </head>
-        <body className="bg-gray-900 text-white flex flex-col min-h-screen">
+        <body className="text-white flex flex-col min-h-screen bg-gray-900">
         {/* Google Analytics Client-Skript */}
         <GAClient />
 
-        {/* Sticky Navigation (fixed auf allen Seiten) */}
-        <div className="fixed top-0 left-0 w-full bg-gray-900 bg-opacity-80 backdrop-blur-md text-white py-3 px-6 flex justify-between items-center z-50">
-            <span className="text-lg font-bold">🔥 AI Affiliate Deals</span>
-            <a
-                href="#"
-                className="bg-yellow-500 text-gray-900 px-4 py-2 rounded-lg font-bold hover:bg-yellow-600 transition"
+        {/* Sticky Navbar */}
+        <div className="fixed top-0 left-0 w-full z-50">
+            <nav
+                className="
+            bg-gradient-to-b
+            from-purple-700
+            via-pink-600
+            to-orange-500
+            text-white
+            py-3
+            px-6
+            flex
+            justify-between
+            items-center
+            shadow-lg
+          "
             >
-                🔝 Top Deals
-            </a>
+                {/* Brand-Section */}
+                <div className="flex items-center space-x-2">
+                    <Image
+                        src="/images/logo_single.jpg"
+                        alt="AI Icon"
+                        width={40}
+                        height={40}
+                        className="object-contain"
+                    />
+                    <span className="text-2xl font-extrabold tracking-wide">AI Affiliate Deals</span>
+                </div>
+                {/* Top Deals Button */}
+                <a
+                    href="#ai-deals"
+                    className="
+                bg-white
+                text-gray-900
+                font-bold
+                px-5
+                py-2
+                rounded-full
+                hover:bg-gray-100
+                transition
+                shadow-md
+              "
+                >
+                    🔝 Top Deals
+                </a>
+            </nav>
         </div>
 
         {/* Extra top padding to account for the sticky nav */}

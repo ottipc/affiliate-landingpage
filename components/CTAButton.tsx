@@ -1,4 +1,6 @@
+// components/CTAButton.tsx
 import React from "react";
+import Image from "next/image";
 
 interface CTAButtonProps {
     href: string;
@@ -10,7 +12,16 @@ export default function CTAButton({ href, toolName }: CTAButtonProps) {
         event.preventDefault();
         console.log("CTA Button clicked:", toolName);
 
-        // Sende das Tracking-Event über den Server-Proxy und logge die Antwort von Google
+        // GA4 Tracking Event
+        if (window.gtag) {
+            window.gtag("event", `${toolName}_cta_click`, {
+                event_category: "Affiliate",
+                event_label: toolName,
+                value: 1,
+            });
+        }
+
+        // Sende das Tracking-Event über den Server-Proxy
         try {
             const response = await fetch("/api/track", {
                 method: "POST",
@@ -23,7 +34,7 @@ export default function CTAButton({ href, toolName }: CTAButtonProps) {
             console.error("Error sending tracking event via proxy:", err);
         }
 
-        // Öffne den Link manuell in einem neuen Tab
+        // Öffne den Link in einem neuen Tab
         window.open(href, "_blank", "noopener,noreferrer");
     };
 
@@ -33,9 +44,47 @@ export default function CTAButton({ href, toolName }: CTAButtonProps) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={handleClick}
-            className="mt-4 bg-yellow-500 text-gray-900 px-6 py-3 rounded-xl hover:shadow-lg hover:bg-yellow-600 font-bold transition w-full text-center text-lg flex items-center justify-center"
+            className="
+        block
+        w-full
+        text-center
+        bg-gradient-to-r
+        from-yellow-400
+        via-pink-500
+        to-red-500
+        rounded-full
+        px-8
+        py-8
+        text-2xl
+        sm:text-3xl
+        font-extrabold
+        text-white
+        uppercase
+        tracking-widest
+        shadow-xl
+        hover:shadow-2xl
+        transform
+        transition
+        duration-300
+        hover:scale-105
+        focus:outline-none
+        focus:ring-4
+        focus:ring-pink-300
+      "
+            style={{ letterSpacing: "2px" }}
         >
-            🔥 Get Best Deal Now 👉
+            <div className="flex items-center justify-center gap-3">
+                <Image
+                    src="/images/rocket.png"
+                    alt="Rocket Icon"
+                    width={32}
+                    height={32}
+                    className="inline-block"
+                />
+                <span>
+          Get Best Deals <span className="inline-block">🔥</span>
+        </span>
+            </div>
         </a>
     );
 }

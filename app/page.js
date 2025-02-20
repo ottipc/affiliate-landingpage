@@ -1,13 +1,18 @@
+// app/page.js
 "use client";
 
 import Head from "next/head";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import CTAButton from "@/components/CTAButton"; // Our cheeky CTA button
+import CTAButton from "@/components/CTAButton";
+import dynamic from "next/dynamic";
 import "./globals.css";
+// Testimonials wurden rausgenommen, weil das zu billig aussieht.
+const FOMOCountdown = dynamic(() => import("@/components/FOMOCountdown"), {
+  ssr: false,
+});
 
 export default function Home() {
-  // Your updated AI tool array with English descriptions
   const aiTools = [
     {
       name: "CustomGPT",
@@ -16,7 +21,6 @@ export default function Home() {
       link: "https://customgpt.ai/?fpr=otti54",
       image: "/images/customGPT.svg",
       id: "customgpt",
-      cookieDuration: "30 days",
     },
     {
       name: "TubeMagic",
@@ -25,7 +29,6 @@ export default function Home() {
       link: "https://tubemagic.com/ds#aff=ai-affiliate-deals",
       image: "/images/tubemagic.webp",
       id: "tubemagic",
-      cookieDuration: "30 days",
     },
     {
       name: "GetResponse",
@@ -34,7 +37,6 @@ export default function Home() {
       link: "https://www.getresponse.com?ab=jWmGpmhpHx",
       image: "/images/getresponse.png",
       id: "getresponse",
-      cookieDuration: "30 days",
     },
     {
       name: "Rytr",
@@ -43,7 +45,6 @@ export default function Home() {
       link: "https://affiliates.rytr.me/",
       image: "/images/rytr.png",
       id: "rytr",
-      cookieDuration: "30 days",
     },
     {
       name: "Fliki",
@@ -52,7 +53,6 @@ export default function Home() {
       link: "https://fliki.ai?via=ottir",
       image: "/images/fliki.png",
       id: "fliki",
-      cookieDuration: "30 days",
     },
     {
       name: "Synthesia",
@@ -61,7 +61,6 @@ export default function Home() {
       link: "https://www.synthesia.io/?via=ottir",
       image: "/images/synthesia.png",
       id: "synthesia",
-      cookieDuration: "30 days",
     },
   ];
 
@@ -87,13 +86,38 @@ export default function Home() {
           <meta property="og:url" content="https://www.ai-affiliate-deals.com" />
           <meta name="robots" content="index, follow" />
         </Head>
+
         <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col items-center px-6 py-16">
-          {/* FOMO Banner */}
-          <div className="bg-red-500 text-white text-center py-3 font-bold w-full mb-4">
-            🚀 Limited-Time AI Deals Ending Soon! Grab Yours Now 👉{" "}
-            <a href="#ai-deals" className="underline">
-              View Deals
-            </a>
+          {/* Limited-Time Banner */}
+          <div
+              className="
+          w-full
+          max-w-7xl
+          mb-6
+          relative
+          bg-gradient-to-r
+          from-yellow-400
+          to-red-500
+          text-black
+          font-bold
+          py-3
+          px-6
+          rounded-lg
+          shadow-lg
+          overflow-hidden
+        "
+          >
+            <Image
+                src="/images/ai-bg.jpg"
+                alt="AI Background"
+                fill
+                className="absolute inset-0 object-cover opacity-10"
+                priority
+            />
+            <div className="relative flex items-center justify-center">
+              <span className="mr-2">🚀 Limited-Time AI Deals Ending Soon!</span>
+              <FOMOCountdown />
+            </div>
           </div>
 
           {/* Header */}
@@ -101,12 +125,12 @@ export default function Home() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center w-full max-w-4xl mb-12"
+              className="text-center w-full max-w-4xl mb-8"
           >
             <h1 className="text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-600 drop-shadow-xl">
-              🚀 The Best AI Tools & Exclusive Deals for 2025 🔥
+              The Best AI Tools & Exclusive Deals for 2025 🔥
             </h1>
-            <p className="text-gray-300 mt-4 text-lg font-light">
+            <p className="text-gray-300 mt-4 text-lg font-light max-w-2xl mx-auto">
               Grab the top AI solutions now and boost your business with the latest technology!
             </p>
           </motion.header>
@@ -114,47 +138,47 @@ export default function Home() {
           {/* AI Tool Cards */}
           <div
               id="ai-deals"
-              className="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-7xl"
           >
             {aiTools.map((tool, index) => (
                 <motion.div
                     key={index}
-                    whileHover={{ scale: 1.05 }}
+                    whileHover={{ scale: 1.02 }}
                     transition={{ duration: 0.3 }}
-                    className="bg-gray-800 shadow-xl rounded-2xl p-6 flex flex-col items-center transition-transform border border-gray-700 hover:shadow-2xl"
+                    className="flex flex-col justify-between h-full p-6 rounded-xl bg-gray-800 bg-opacity-80 border border-gray-700 shadow-md hover:shadow-xl transition"
                 >
-                  {/* Image Container (8:5) */}
-                  <div className="relative w-full aspect-[8/5] bg-white rounded-lg overflow-hidden">
-                    {["rytr", "tubemagic"].includes(tool.id) ? (
-                        <Image
-                            src={tool.image}
-                            alt={tool.name}
-                            fill
-                            className="object-cover"
-                            loading="lazy"
-                        />
-                    ) : (
-                        <Image
-                            src={tool.image}
-                            alt={tool.name}
-                            fill
-                            className="object-contain p-4"
-                            loading="lazy"
-                        />
-                    )}
+                  <div className="flex-1">
+                    <div className="relative w-full aspect-[8/5] rounded-lg overflow-hidden bg-white">
+                      {["rytr", "tubemagic"].includes(tool.id) ? (
+                          <Image
+                              src={tool.image}
+                              alt={tool.name}
+                              fill
+                              className="object-cover"
+                              loading="lazy"
+                          />
+                      ) : (
+                          <Image
+                              src={tool.image}
+                              alt={tool.name}
+                              fill
+                              className="object-contain p-4"
+                              loading="lazy"
+                          />
+                      )}
+                    </div>
+                    <h2 className="text-xl font-bold mt-4">{tool.name}</h2>
+                    <p className="text-sm sm:text-base mt-2 text-gray-200">{tool.description}</p>
                   </div>
-                  <h2 className="text-2xl font-bold mt-4 text-yellow-300" id={tool.id}>
-                    {tool.name}
-                  </h2>
-                  <p className="text-gray-400 mt-2 text-center">{tool.description}</p>
-                  <CTAButton href={tool.link} toolName={tool.name} />
-
+                  <div className="mt-4">
+                    <CTAButton href={tool.link} toolName={tool.name} />
+                  </div>
                 </motion.div>
             ))}
           </div>
 
           {/* FAQ Section */}
-          <div className="mt-12 text-white w-full max-w-4xl">
+          <div className="mt-12 w-full max-w-7xl">
             <h2 className="text-3xl font-bold mb-4">💡 Frequently Asked Questions</h2>
             <div className="space-y-4">
               <div>
@@ -170,15 +194,15 @@ export default function Home() {
               <div>
                 <p className="font-bold">How can AI help my business?</p>
                 <p>
-                  AI can automate tasks like copywriting, email marketing, content creation, and
-                  even website building. It’s all about working smarter, not harder.
+                  AI can automate tasks like copywriting, email marketing, content creation, and even
+                  website building. It’s all about working smarter, not harder.
                 </p>
               </div>
               <div>
                 <p className="font-bold">Are these deals limited?</p>
                 <p>
-                  Yes, they’re exclusive, limited-time deals. Grab them before they vanish into
-                  thin air like your last bar tab.
+                  Yes, they’re exclusive, limited-time deals. Grab them before they vanish into thin
+                  air like your last bar tab.
                 </p>
               </div>
             </div>
