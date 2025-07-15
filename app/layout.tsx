@@ -106,7 +106,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         {/* Footer */}
         <footer className="bg-gray-800 p-6 text-center flex flex-col items-center">
             <div className="text-gray-400 text-lg flex gap-4">
-                <ImpressumModal />
+              {/*  <ImpressumModal /> */}
                 <a href="/datenschutz" className="text-yellow-400 hover:text-yellow-500">
                     Datenschutz
                 </a>
