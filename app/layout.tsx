@@ -1,7 +1,6 @@
 import Script from "next/script";
 import Image from "next/image";
 import GAClient from "@/components/GAClient";
-#import ImpressumModal from "@/components/ImpressumModal";
 
 export const metadata = {
     title: "AI Affiliate Deals",
